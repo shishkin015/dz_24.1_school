@@ -17,6 +17,8 @@ class Well(models.Model):
 
 
 class Lesson(models.Model):
+    well = models.ForeignKey(Well, related_name='lesson', on_delete=models.CASCADE, **NULLABLE, verbose_name='курс')
+
     name = models.CharField(max_length=150, verbose_name='название урока')
     description = models.TextField(verbose_name='описание')
     preview = models.ImageField(upload_to='lesson/', verbose_name='превью', **NULLABLE)
