@@ -13,3 +13,8 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    def save(self, *args, **kwargs):
+        if self._state.adding or not self.pk:
+            self.set_password(self.password)
+        super().save(*args, **kwargs)
